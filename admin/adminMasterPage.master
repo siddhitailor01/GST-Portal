@@ -1,0 +1,258 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="adminMasterPage.master.cs" Inherits="admin_adminMasterPage" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head id="Head1" runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin Dashboard | GST Champions</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --brand-dark: #0f172a;
+            --brand-primary: #6366f1;
+            --brand-secondary: #a855f7;
+            --sidebar-width: 280px;
+            --topbar-height: 70px;
+        }
+        
+        body { 
+            background-color: #f1f5f9; 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* --- Custom Scrollbar --- */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+
+        /* --- Sidebar Premium Design --- */
+        .sidebar {
+            height: 100vh;
+            width: var(--sidebar-width);
+            background-color: var(--brand-dark);
+            color: #94a3b8;
+            position: fixed;
+            left: 0; top: 0;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1001;
+            overflow-y: auto;
+            border-right: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .sidebar.collapsed { left: -280px; }
+
+        .sidebar-brand {
+            padding: 30px 25px;
+            background: linear-gradient(to right, var(--brand-primary), var(--brand-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* --- Nav Links Logic --- */
+        .nav-link {
+            color: #94a3b8;
+            padding: 14px 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            margin: 4px 15px;
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+
+        .nav-link i { width: 30px; font-size: 1.1rem; opacity: 0.7; }
+
+        .nav-link:hover {
+            color: white;
+            background: rgba(255,255,255,0.05);
+            transform: translateX(5px);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(135deg, var(--brand-primary) 0%, #4f46e5 100%);
+            color: white;
+            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);
+        }
+
+        .section-header {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 25px 30px 10px;
+            color: #475569;
+            font-weight: 800;
+        }
+
+        /* --- Topbar Features --- */
+        .top-navbar {
+            height: var(--topbar-height);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            left: var(--sidebar-width);
+            width: calc(100% - var(--sidebar-width));
+            margin-left: var(--sidebar-width);
+            z-index: 999;
+            border-bottom: 1px solid #e2e8f0;
+            transition: 0.4s;
+        }
+
+        .top-navbar.expanded { width: 100%; margin-left: 0; }
+
+        .sidebar-toggle {
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--brand-dark);
+            background: #f1f5f9;
+            width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 10px;
+        }
+
+        /* --- Extra Logic: User Profile Dropdown --- */
+        .user-dropdown {
+            background: white;
+            padding: 8px 15px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-avatar {
+            width: 35px; height: 35px;
+            background: var(--brand-primary);
+            color: white;
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800;
+        }
+
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding: 40px;
+            transition: 0.4s;
+            min-height: calc(100vh - var(--topbar-height));
+        }
+
+        .main-content.expanded { margin-left: 0; }
+
+        .logout-btn { color: #f43f5e !important; margin-top: 50px; border: 1px solid rgba(244, 63, 94, 0.2); }
+        .logout-btn:hover { background: rgba(244, 63, 94, 0.1) !important; }
+    </style>
+
+    <asp:ContentPlaceHolder id="head" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        
+        <aside class="sidebar shadow-lg" id="adminSidebar">
+            <div class="sidebar-brand">
+                <i class="fas fa-shield-halved me-2"></i>GST CHAMPIONS
+            </div>
+            
+            <nav class="nav flex-column py-3">
+                <a class="nav-link active" href="Dashboard.aspx"><i class="fas fa-chart-line"></i> Dashboard</a>
+                
+                <div class="section-header">Content Engine</div>
+                <a class="nav-link" href="ManageLessons.aspx"><i class="fas fa-book-reader"></i> Lessons Management</a>
+                <a class="nav-link" href="ManageBlogs.aspx"><i class="fas fa-pen-nib"></i> Blog Articles</a>
+                <a class="nav-link" href="ManageFAQs.aspx"><i class="fas fa-circle-question"></i> Help Center (FAQs)</a>
+                <a class="nav-link" href="ManagePages.aspx"><i class="fas fa-book"></i> Static pages</a>
+
+                
+                <div class="section-header">Compliance & Data</div>
+                <a class="nav-link" href="ManageRates.aspx"><i class="fas fa-percent"></i> GST Rate Finder Data</a>
+                
+                <div class="section-header">Evaluation System</div>
+                <a class="nav-link" href="ManageTopics.aspx"><i class="fas fa-folder-tree"></i> Quiz Categories</a> 
+                <a class="nav-link" href="QuizSettings.aspx"><i class="fas fa-cogs"></i> Quiz Settings</a> 
+                <a class="nav-link" href="ManageQuestions.aspx"><i class="fas fa-list-ul"></i> Question Bank</a> 
+                
+                <div class="section-header">User Engagement</div>
+                <a class="nav-link" href="ContactQueries.aspx">
+                    <i class="fas fa-inbox"></i> Inquiries 
+                    <span class="badge bg-danger rounded-pill ms-auto px-2" style="font-size: 0.6rem;">New</span>
+                </a>
+                
+                <div class="section-header">System Control</div>
+                <a class="nav-link" href="Settings.aspx"><i class="fas fa-magnifying-glass"></i> SEO Settings</a>
+                <a class="nav-link" href="ChangePassword.aspx"><i class="fas fa-key"></i> Security</a>
+                
+                <asp:LinkButton ID="btnLogout" runat="server" CssClass="nav-link logout-btn" OnClick="btnLogout_Click">
+                    <i class="fas fa-power-off"></i> Sign Out
+                </asp:LinkButton>
+            </nav>
+        </aside>
+
+        <header class="top-navbar" id="topNavbar">
+            <div class="d-flex align-items-center gap-3">
+                <div class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars-staggered"></i>
+                </div>
+                <h5 class="fw-800 mb-0 d-none d-md-block text-slate-700">Administrator <span class="text-muted fw-normal fs-6">Panel</span></h5>
+            </div>
+
+            <div class="d-flex align-items-center gap-4">
+                <div class="d-none d-lg-block text-end">
+                    <p class="mb-0 fw-800 small text-dark">GST Champions</p>
+                    <p class="mb-0 text-muted" style="font-size: 0.7rem;">Senior Editor | Rajasthan</p>
+                </div>
+                <div class="user-dropdown">
+                    <div class="user-avatar shadow-sm">GC</div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content" id="mainBody">
+            <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+        </main>
+
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Extra Logic: Sidebar Toggle for better workspace management
+        function toggleSidebar() {
+            const sidebar = document.getElementById('adminSidebar');
+            const topbar = document.getElementById('topNavbar');
+            const body = document.getElementById('mainBody');
+            
+            sidebar.classList.toggle('collapsed');
+            topbar.classList.toggle('expanded');
+            body.classList.toggle('expanded');
+        }
+
+        // Auto-active Link Logic
+        document.addEventListener("DOMContentLoaded", function() {
+            const currentPath = window.location.pathname.split("/").pop();
+            const links = document.querySelectorAll(".nav-link");
+            links.forEach(link => {
+                if (link.getAttribute("href") === currentPath) {
+                    links.forEach(l => l.classList.remove("active"));
+            link.classList.add("active");
+        }
+        });
+        });
+    </script>
+</body>
+</html>

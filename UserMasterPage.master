@@ -1,0 +1,370 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="UserMasterPage.master.cs" Inherits="UserMasterPage" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head id="Head1" runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <title>GST Champions | 0 to Advanced GST Learning Portal</title>
+    <meta name="description" content="Master GST from basics to advanced level with GST Champions. Rajasthan's premier learning hub for tax professionals and students." />
+    <meta name="keywords" content="GST Training Bhilwara, Learn GST Online, GST MCQ Quiz, HSN Finder India, GST Rates 2026, Parikshit Mathur GST" />
+    <meta name="author" content="Parikshit Mathur" />
+    <meta name="robots" content="index, follow" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.gstchampions.in/" />
+    <meta property="og:title" content="GST Champions | Professional Taxation Learning" />
+    <meta property="og:description" content="Interactive GST learning modules, HSN finder, and certification quizzes. Start your journey today!" />
+    <meta property="og:image" content="https://www.gstchampions.in/images/og-preview.jpg" />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="GST Champions | Advanced Learning" />
+    <meta property="twitter:description" content="Simplifying GST for India's future tax experts." />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "GST Champions",
+      "url": "https://www.gstchampions.in/",
+      "logo": "https://www.gstchampions.in/images/logo.png",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bhilwara",
+        "addressRegion": "Rajasthan",
+        "addressCountry": "IN"
+      },
+      "founder": "GST Champions",
+      "description": "Rajasthan's leading GST education portal offering level-based learning and interactive tools."
+    }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <style>
+        :root {
+            --brand-dark: #0f172a;
+            --brand-primary: #6366f1; /* Indigo */
+            --brand-secondary: #a855f7; /* Violet */
+            --brand-accent: #f43f5e; /* Rose for highlights */
+            --glass: rgba(255, 255, 255, 0.85);
+            --bg-soft: #f8fafc;
+        }
+
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background: radial-gradient(circle at top right, #f1f5f9, #ffffff);
+            color: #334155;
+            overflow-x: hidden; 
+        }
+
+        /* --- Creative Glass Navbar --- */
+        .navbar {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 12px 0;
+            background: var(--glass);
+        }
+
+        .navbar.scrolled {
+            background: var(--glass);
+            backdrop-filter: blur(12px) saturate(180%);
+            padding: 12px 0;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .navbar-brand { 
+            font-weight: 800; 
+            letter-spacing: -0.5px;
+            background: linear-gradient(45deg, var(--brand-primary), var(--brand-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.6rem; 
+        }
+        
+        .brand-icon-box {
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+            padding: 8px;
+            border-radius: 12px;
+            color: white !important;
+            -webkit-text-fill-color: white !important;
+            margin-right: 10px;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .nav-link {
+            font-weight: 600;
+            color: var(--brand-dark) !important;
+            margin: 0 12px;
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover { opacity: 1; color: var(--brand-primary) !important; }
+
+        /* --- Animated Mega Dropdown --- */
+        .dropdown-menu {
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border-radius: 18px;
+            padding: 12px;
+            margin-top: 15px !important;
+        }
+
+        .dropdown-item {
+            border-radius: 10px;
+            transition: 0.2s;
+            font-weight: 500;
+        }
+
+        .dropdown-item:hover {
+            background: #f1f5f9;
+            transform: translateX(5px);
+        }
+
+        /* --- The "Champion" Button --- */
+        .btn-quiz {
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+            color: white !important;
+            border-radius: 14px;
+            padding: 12px 28px;
+            font-weight: 700;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-quiz::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, var(--brand-secondary), var(--brand-primary));
+            opacity: 0;
+            transition: 0.5s;
+            z-index: -1;
+        }
+
+        .btn-quiz:hover::before { opacity: 1; }
+        .btn-quiz:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(99, 102, 241, 0.4); }
+
+        /* --- Futuristic Footer --- */
+        .footer {
+            background: var(--brand-dark);
+            color: #94a3b8;
+            padding: 100px 0 40px;
+            margin-top: 120px;
+    
+        }
+
+        .footer h5 { color: white; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; font-size: 0.9rem; }
+        
+        .footer-link { 
+            color: #64748b; 
+            text-decoration: none; 
+            transition: 0.3s; 
+            display: inline-block; 
+            margin-bottom: 12px; 
+        }
+
+        .footer-link:hover { 
+            color: var(--brand-secondary); 
+            transform: translateX(8px); 
+        }
+
+        /* --- Modern Preloader --- */
+        #preloader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: white;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .loader-logo {
+            font-weight: 800;
+            font-size: 2rem;
+            background: linear-gradient(45deg, var(--brand-primary), var(--brand-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        #btnScrollTop {
+            background: var(--brand-primary);
+            border: none;
+            transition: 0.3s;
+        }
+
+        #btnScrollTop:hover { background: var(--brand-secondary); transform: scale(1.1); }
+
+    </style>
+    <asp:ContentPlaceHolder id="head" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+    <div id="preloader">
+        <div class="loader-logo animate__animated animate__pulse animate__infinite">GST CHAMPIONS</div>
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+
+    <form id="form1" runat="server">
+        <nav class="navbar navbar-expand-lg sticky-top">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" href="index.aspx">
+                    GST CHAMPIONS
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#userNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="userNav">
+                    <ul class="navbar-nav ms-auto align-items-center">
+                        <li class="nav-item"><a class="nav-link" href="index.aspx">Home</a></li>
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Learn GST</a>
+                            <ul class="dropdown-menu animate__animated animate__fadeIn">
+                                <li><a class="dropdown-item py-3" href="Level1.aspx">
+                                    <div class="d-flex align-items-center">
+                                        <div class="icon-sm me-3 text-success"><i class="fas fa-seedling"></i></div>
+                                        <div><div class="fw-bold">Level 1</div></div>
+                                    </div>
+                                </a></li>
+                                <li><a class="dropdown-item py-3" href="Level2.aspx">
+                                    <div class="d-flex align-items-center">
+                                        <div class="icon-sm me-3 text-warning"><i class="fas fa-rocket"></i></div>
+                                        <div><div class="fw-bold">Level 2</div></div>
+                                    </div>
+                                </a></li>
+                                <li><a class="dropdown-item py-3" href="Level3.aspx">
+                                    <div class="d-flex align-items-center">
+                                        <div class="icon-sm me-3 text-danger"><i class="fas fa-trophy"></i></div>
+                                        <div><div class="fw-bold">Level 3</div></div>
+                                    </div>
+                                </a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item"><a class="nav-link" href="RateFinder.aspx"> Rates</a></li>
+                        <li class="nav-item"><a class="nav-link" href="KnowledgeHub.aspx">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link" href="FAQs.aspx">Support</a></li>
+
+                        
+                        <li class="nav-item ms-lg-3">
+                            <a href="Quiz.aspx" class="btn btn-quiz"><i class="fas fa-bolt-lightning me-2"></i> Quiz</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <main>
+            <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+        </main>
+
+     <footer class="footer py-5 mt-5" style="background: var(--brand-dark); color: rgba(255,255,255,0.7);">
+    <div class="container">
+        <div class="row g-5" data-aos="fade-up">
+            <div class="col-lg-5 col-md-12">
+                <h4 class="text-white fw-900 mb-4" style="letter-spacing: 1px;">GST CHAMPIONS</h4>
+                <p style="font-size: 1rem; line-height: 1.8; max-width: 450px;">
+                    Desh ka sabse asaan GST learning portal. Empowering students and professionals to master taxation with modern tools and simplified learning modules.
+                </p>
+                <div class="mt-4 d-flex gap-3">
+                    <a href="#" class="btn btn-outline-light rounded-circle border-opacity-25" style="width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="btn btn-outline-light rounded-circle border-opacity-25" style="width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="btn btn-outline-light rounded-circle border-opacity-25" style="width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-white fw-800 mb-4">Quick Exploration</h5>
+                <ul class="list-unstyled footer-links">
+                    <li class="mb-3"><a href="About.aspx" class="text-decoration-none text-reset hover-primary">Our Story</a></li>
+                    <li class="mb-3"><a href="Disclaimer.aspx" class="text-decoration-none text-reset hover-primary">Terms & Disclaimer</a></li>
+                    <li class="mb-3"><a href="Contact.aspx" class="text-decoration-none text-reset hover-primary">Contact Us</a></li>
+                    <li class="mb-3"><a href="KnowledgeHub.aspx" class="text-decoration-none text-reset hover-primary">Updates</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <h5 class="text-white fw-800 mb-4">Get In Touch</h5>
+                <div class="d-flex mb-4">
+                    <div class="icon-box me-3">
+                        <i class="fas fa-envelope-open-text text-primary fs-5"></i>
+                    </div>
+                    <div>
+                        <div class="text-white fw-800 small text-uppercase" style="letter-spacing: 1px;">Email Support</div>
+                        <a href="mailto:support@gstchampions.com" class="text-decoration-none text-reset">support@gstchampions.com</a>
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <div class="icon-box me-3">
+                        <i class="fas fa-map-location-dot text-primary fs-5"></i>
+                    </div>
+                    <div>
+                        <div class="text-white fw-800 small text-uppercase" style="letter-spacing: 1px;">Headquarters</div>
+                        <div class="text-reset">Bhilwara, Rajasthan, India</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="mt-5 border-white opacity-10" />
+
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center small py-3 opacity-75">
+            <div class="mb-2 mb-md-0">© 2026 GST Champions. All Rights Reserved.</div>
+            <div class="fw-bold">Designed for Accuracy & Ease.</div>
+        </div>
+    </div>
+</footer>
+
+        <button type="button" class="btn btn-primary position-fixed bottom-0 end-0 m-4 rounded-3 shadow-lg" id="btnScrollTop" style="display:none; width:50px; height:50px; z-index:1000;">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        // AOS Initialize
+        AOS.init({ duration: 800, once: true, easing: 'ease-out' });
+
+        // Navbar Scroll Effect
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 30) {
+                $('.navbar').addClass('scrolled');
+                $('#btnScrollTop').fadeIn();
+            } else {
+                $('.navbar').removeClass('scrolled');
+                $('#btnScrollTop').fadeOut();
+            }
+        });
+
+        // Preloader Logic
+        $(window).on('load', function () {
+            $('#preloader').delay(600).fadeOut('slow');
+        });
+
+        // Scroll to Top Logic
+        $('#btnScrollTop').click(function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
