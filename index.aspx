@@ -338,7 +338,7 @@
                 </div>
                 <div class="col-lg-6">
                     <span class="text-primary fw-900 text-uppercase tracking-widest small">Our Mission</span>
-                    <h2 class="fw-900 display-5 mt-3 mb-4">Bridging the Gap <br />Between Theory & Practice.</h2>
+                    <h2 class="fw-900 display-5 mt-3 mb-4">Bridging the Gap <br /> Between Theory & Practice.</h2>
                     <p class="text-muted fs-5 mb-5 lh-lg">GST Champions sirf ek portal nahi, Commerce students aur Accountants ke liye ek launchpad hai. Hum law ki complex language ko simplified modules mein translate karte hain.</p>
                     <div class="row g-4 mb-5">
                         <div class="col-6">
@@ -382,7 +382,7 @@
                     <div class="level-card text-center">
                         <div class="icon-circle text-danger mx-auto"><i class="fas fa-trophy"></i></div>
                         <h4 class="fw-900 mb-3">03. Advanced</h4>
-                        <p class="text-muted mb-4">Audit, Assessments, & Dispute resolutions.</p>
+                        <p class="text-muted mb-4">Audit, Assessments, & Dispute resolutions. </p>
                         <a href="Level3.aspx" class="btn btn-link text-primary fw-900 text-decoration-none">Master it <i class="fas fa-arrow-right ms-2"></i></a>
                     </div>
                 </div>
