@@ -243,6 +243,7 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
 
+
         .card-body { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
         
         .card-title { 
@@ -290,7 +291,7 @@
                     </span>
                     <h1 class="hero-title">Master the <br />Art of <span>GST</span></h1>
                     <p class="fs-5 text-secondary my-5 pe-lg-5" style="line-height: 1.9;">
-                        Taxation ki complexity ko ab bolo bye-bye. Humare level-based framework aur practical case studies ke saath baniye ek certified tax expert.
+                        Taxation ki complexity ko ab bolo bye-bye . Humare level-based framework aur practical case studies ke saath baniye ek certified tax expert.
                     </p>
                     <div class="d-flex flex-wrap gap-3">
                         <a href="Level1.aspx" class="btn btn-quiz shadow-lg">Start Learning <i class="fas fa-bolt ms-2"></i></a>
@@ -373,7 +374,7 @@
                     <div class="level-card text-center" style="border-top: 5px solid var(--brand-primary);">
                         <div class="icon-circle text-primary mx-auto"><i class="fas fa-rocket"></i></div>
                         <h4 class="fw-900 mb-3">02. Practical</h4>
-                        <p class="text-muted mb-4">GSTR Filing, ITC Claims & Portal workflow.</p>
+                        <p class="text-muted mb-4">GSTR Filing , ITC Claims & Portal workflow.</p>
                         <a href="Level2.aspx" class="btn btn-link text-primary fw-900 text-decoration-none">Go Deep <i class="fas fa-arrow-right ms-2"></i></a>
                     </div>
                 </div>
