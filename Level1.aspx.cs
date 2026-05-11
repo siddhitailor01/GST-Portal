@@ -21,7 +21,6 @@ public partial class Level1 : System.Web.UI.Page
         {
             using (SqlConnection conn = new SqlConnection(connStr))
             {
-                // LevelID = 1 yani Basic topics
                 string query = "SELECT TopicID, TopicName FROM QuizTopics WHERE LevelID = 1 AND IsActive = 1 ORDER BY CreatedDate ASC";
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
